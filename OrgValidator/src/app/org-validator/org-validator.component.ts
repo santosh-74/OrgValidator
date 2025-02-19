@@ -20,6 +20,8 @@ export class OrgValidatorComponent {
   onFileUpload(event: any): void {
     const target: DataTransfer = <DataTransfer>event.target;
     if (target.files.length !== 1) {
+      this.uploadedData = [];
+      this.errorMessages = [];
       alert('Please upload only one file at a time.');
       return;
     }
