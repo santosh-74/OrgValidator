@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Upload Organization Chart</h2>
+  
+    <input type="file" (change)="onFileUpload($event)" accept=".xlsx, .xls, .csv" />
+    <button (click)="validateData()" [disabled]="uploadedData.length === 0">Validate</button>
+  
+    <table *ngIf="uploadedData.length > 0">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Full Name</th>
+          <th>Role</th>
+          <th>Reports To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of uploadedData">
+          <td>{{ user.email }}</td>
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.reportsTo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="errorMessages.length > 0" class="error-section">
+      <h3>Validation Errors</h3>
+      <ul>
+        <li *ngFor="let error of errorMessages">{{ error }}</li>
+      </ul>
+    </div>
+  </div>
+  
